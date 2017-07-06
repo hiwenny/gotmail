@@ -6,15 +6,23 @@ body {
 
 .container {
     display: flex;
-    flex-flow: row wrap;
     justify-content: center;
     .display-text {
         width: 100%;
         text-align: center;
         margin: 10rem auto;
     }
-    .button-container {
-        display: inline-flex;
+    .mailform-container {
+        width: 60vw;
+        input {
+            width: 100%;
+        }
+        textarea {
+            width: 100%;
+        }
+        button.submit {
+            width: 100%;
+        }
         .sample {
             border: 1px solid #888888;
             border-radius: 5px;

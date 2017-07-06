@@ -1,5 +1,5 @@
-import StatelessComponentwithProps from './StatelessComponentwithProps';
+import MailForm from './MailForm';
 
 export {
-    StatelessComponentwithProps
+    MailForm
 }

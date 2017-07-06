@@ -1,5 +1,7 @@
-import { sampleAction } from 'app';
+import { changeMailRecipient, changeMailSubject, changeMailContent } from 'app';
 
 export {
-    sampleAction
+    changeMailRecipient,
+    changeMailSubject,
+    changeMailContent
 }
