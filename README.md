@@ -10,4 +10,9 @@ To run on development server:
 npm start
 ```
 
+To run unit tests in development:
+```
+npm test
+```
+
 The site is accessible on `http://localhost:3000/`
