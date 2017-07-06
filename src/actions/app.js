@@ -1,9 +1,9 @@
 import * as actionTypes from './constants'
 
-export function changeMailRecipient(recipient) {
+export function changeMailRecipients(recipients) {
   return {
     type: actionTypes.CHANGE_MAIL_RECIPIENT,
-    mailRecipient: recipient
+    mailRecipients: recipients
   }
 }
 

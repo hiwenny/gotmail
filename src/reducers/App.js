@@ -1,7 +1,7 @@
 import * as types from '../actions/constants'
 
 const initState = {
-  mailRecipient: null,
+  mailRecipients: null,
   mailSubject: null,
   mailContent: null,
   editStatus: true
@@ -11,7 +11,7 @@ const app = (state = initState, action) => {
   switch (action.type) {
     case types.CHANGE_MAIL_RECIPIENT: {
       return {
-        ...state, mailRecipient: action.mailRecipient
+        ...state, mailRecipients: action.mailRecipients
       }
     }
     case types.CHANGE_MAIL_SUBJECT: {

@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { MailForm } from './components'
-import { changeMailRecipient, changeMailSubject, changeMailContent, changeEditStatus } from './actions/app'
+import { changeMailRecipients, changeMailSubject, changeMailContent, changeEditStatus } from './actions/app'
 import './scss/index.scss'
 
 class App extends Component {
 
   handleSubmit = (e) => {
-    const { dispatch, mailSubject, mailContent, mailRecipient } = this.props;
-    if (mailRecipient && mailContent) {
+    const { dispatch, mailSubject, mailContent, mailRecipients } = this.props;
+    if (mailRecipients && mailContent) {
       //send contents
       return alert('successful');
     }
@@ -21,7 +21,7 @@ class App extends Component {
     const { dispatch } = this.props;
     switch(type) {
       case 'recipient':
-        return dispatch(changeMailRecipient(payload));
+        return dispatch(changeMailRecipients(payload));
       case 'subject':
         return dispatch(changeMailSubject(payload));
       case 'content':
@@ -37,13 +37,13 @@ class App extends Component {
   }
 
   render() {
-    const { mailSubject, mailContent, mailRecipient, editStatus } = this.props;
+    const { mailSubject, mailContent, mailRecipients, editStatus } = this.props;
     return (
       <div className="container">
         <MailForm onChange={this.handleChange}
                   onClick={this.handleSubmit} 
                   onEdit={this.toggleEdit}
-                  recipient={mailRecipient} 
+                  recipient={mailRecipients}
                   editMode={editStatus} />
       </div>
     )
@@ -52,7 +52,7 @@ class App extends Component {
 
 function mapStateToProps(store) {
   return {
-    mailRecipient: store.app.mailRecipient,
+    mailRecipients: store.app.mailRecipients,
     mailSubject: store.app.mailSubject,
     mailContent: store.app.mailContent,
     editStatus: store.app.editStatus
@@ -60,14 +60,14 @@ function mapStateToProps(store) {
 }
 
 App.defaultProps = {
-  mailRecipient: null,
+  mailRecipients: null,
   mailSubject: null,
   mailContent: null,
   editStatus: true
 }
 
 App.propTypes = {
-  mailRecipient: PropTypes.string,
+  mailRecipients: PropTypes.string,
   mailContent: PropTypes.string,
   mailSubject: PropTypes.string,
   dispatch: PropTypes.func,
