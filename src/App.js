@@ -11,6 +11,7 @@ class App extends Component {
     const { dispatch, mailSubject, mailContent, mailRecipient } = this.props;
     if (mailRecipient && mailContent) {
       //send contents
+      return alert('successful');
     }
     return alert('Mail recipient and message field must not be empty.');
   }
