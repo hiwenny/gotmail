@@ -36,8 +36,6 @@ class App extends Component {
     const { mailSubject, mailContent, mailRecipient } = this.props;
     return (
       <div className='container'>
-        <text>Subject: {mailSubject}</text>
-        <text>Content: {mailContent}</text>
         <MailForm onSubjectChange={this.handleSubjectChange}
                   onContentChange={this.handleContentChange}
                   onChange={this.handleChange}
