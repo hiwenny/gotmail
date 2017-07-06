@@ -3,7 +3,8 @@ import * as types from '../actions/constants'
 const initState = {
   mailRecipient: null,
   mailSubject: null,
-  mailContent: null
+  mailContent: null,
+  editStatus: true
 }
 
 const app = (state = initState, action) => {
@@ -21,6 +22,11 @@ const app = (state = initState, action) => {
     case types.CHANGE_MAIL_CONTENT: {
       return {
         ...state, mailContent: action.mailContent
+      }
+    }
+    case types.CHANGE_EDIT_STATUS: {
+      return {
+        ...state, editStatus: action.editStatus
       }
     }
     default:

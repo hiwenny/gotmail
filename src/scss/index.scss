@@ -36,8 +36,7 @@ body {
             min-height: 25vh;
             @include input-field;
         }
-        button.submit {
-            width: 100%;
+        button {
             padding: 0.5rem;
             margin-top: 0.5rem;
             font-size: 1rem;
@@ -48,6 +47,24 @@ body {
             &:hover {
                 background-color: $color-blue;
                 color: white;
+            }
+            &.mailform-submit {
+                width: 100%;
+            }
+        }
+        .mailform-recipient-container {
+            width: 100%;
+            display: inline-flex;
+            justify-content: space-between;
+            .mailform-recipient-email {
+                width: 80%;
+                &.inactive {
+                    border: none;
+                }
+            }
+            button.mailform-recipient-button {
+                margin: 0 0 0.2rem 0;
+                width: 19%;
             }
         }
     }

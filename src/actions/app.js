@@ -21,4 +21,11 @@ export function changeMailContent(content) {
   }
 }
 
+export function changeEditStatus(status) {
+  return {
+    type: actionTypes.CHANGE_EDIT_STATUS,
+    editStatus: status
+  }
+}
+
 
