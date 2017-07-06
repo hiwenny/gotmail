@@ -32,9 +32,7 @@ class App extends Component {
     const { mailSubject, mailContent, mailRecipient } = this.props;
     return (
       <div className="container">
-        <MailForm onSubjectChange={this.handleSubjectChange}
-                  onContentChange={this.handleContentChange}
-                  onChange={this.handleChange}
+        <MailForm onChange={this.handleChange}
                   onClick={this.handleSubmit} />
       </div>
     )
