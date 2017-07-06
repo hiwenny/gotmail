@@ -18,12 +18,12 @@ const app = (state = initState, action) => {
     }
     case types.CHANGE_MAIL_CCS: {
       return {
-        ...state, mailCCs: action.mailCCS
+        ...state, mailCCs: action.mailCCs
       }
     }
     case types.CHANGE_MAIL_BCCS: {
       return {
-        ...state, mailBCCS: action.mailBCCS
+        ...state, mailBCCs: action.mailBCCs
       }
     }
     case types.CHANGE_MAIL_SUBJECT: {

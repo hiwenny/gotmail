@@ -8,20 +8,26 @@ import './scss/index.scss'
 class App extends Component {
 
   handleSubmit = (e) => {
-    const { dispatch, mailSubject, mailContent, mailRecipients } = this.props;
-    if (mailRecipients && mailContent) {
-      //send contents
-      return alert('successful');
-    }
-    return alert('Mail recipient and message field must not be empty.');
+    // const { dispatch, mailSubject, mailContent, mailRecipients } = this.props;
+    // if (mailRecipients && mailContent) {
+    //   //send contents
+    //   return alert('successful');
+    // }
+    // return alert('Mail recipient and message field must not be empty.');
   }
 
   handleChange = (type, e) => {
     const payload = e.target.value;
     const { dispatch } = this.props;
     switch(type) {
-      case 'recipients':
+      case 'email-main':
         this.splitRecipients(payload, 'main');
+        break;
+      case 'email-CC':
+        this.splitRecipients(payload, 'CC');
+        break;
+      case 'email-BCC':
+        this.splitRecipients(payload, 'BCC');
         break;
       case 'subject':
         return dispatch(changeMailSubject(payload));
@@ -41,7 +47,9 @@ class App extends Component {
       case 'CC':
         return dispatch(changeMailCCs(list));
       case 'BCC':
-      return dispatch(changeMailBCCs(list));
+        return dispatch(changeMailBCCs(list));
+      default:
+        break;
     }
   }
 
@@ -51,10 +59,9 @@ class App extends Component {
   }
 
   render() {
-    const { mailSubject, mailContent, mailRecipients, editStatus } = this.props;
+    const { mailSubject, mailCCs, mailBCCs, mailContent, mailRecipients, editStatus } = this.props;
     return (
       <div className="container">
-        {mailRecipients.length > 0 && console.log(mailRecipients)}
         <MailForm onChange={this.handleChange}
                   onClick={this.handleSubmit} 
                   onEdit={this.toggleEdit}
@@ -69,7 +76,7 @@ function mapStateToProps(store) {
   return {
     mailRecipients: store.app.mailRecipients,
     mailCCs: store.app.mailCCs,
-    mailBCC: store.app.mailBCCs,
+    mailBCCs: store.app.mailBCCs,
     mailSubject: store.app.mailSubject,
     mailContent: store.app.mailContent,
     editStatus: store.app.editStatus
