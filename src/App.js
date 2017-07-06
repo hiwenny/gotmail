@@ -14,9 +14,14 @@ class App extends Component {
   //   return dispatch(sampleAction(sampleParam));
   // }
 
-  handleSubmit = (recipient, subject, content, e) => {
-  //   const { dispatch, mailSubject, mailContent, mailRecipient } = this.props;
-  //   alert(mailSubject)
+  handleSubmit = (e) => {
+    const { dispatch, mailSubject, mailContent, mailRecipient } = this.props;
+    if (mailRecipient && mailContent) {
+      return alert('success');
+    } else if (!mailContent) {
+      return alert(mailContent);
+    }
+    return alert('Mail Recipient and Message must not be empty');
   }
 
   handleChange = (type, e) => {
@@ -39,7 +44,7 @@ class App extends Component {
         <MailForm onSubjectChange={this.handleSubjectChange}
                   onContentChange={this.handleContentChange}
                   onChange={this.handleChange}
-                  onClick={this.handleSubmit.bind(mailRecipient, mailSubject, mailContent)} />
+                  onClick={this.handleSubmit} />
       </div>
     )
   }
