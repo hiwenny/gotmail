@@ -6,7 +6,7 @@ const MailForm = props => {
     <div className='mailform-container'>
         <h1 className="header">Contact Us</h1>
         <div className="mailform-recipient-container">
-          {!props.editMode ? <input type="text" className="mailform-recipient-email inactive" readOnly={true} /> : <input type="text" className="mailform-recipient-email" onChange={props.onChange.bind(this, 'recipient')}/>}
+          {!props.editMode ? <input type="text" className="mailform-recipient-email inactive" readOnly={true} /> : <input type="text" className="mailform-recipient-email" onChange={props.onChange.bind(this, 'recipients')}/>}
           <button className="mailform-recipient-button" onClick={props.onEdit.bind(this)}>Edit</button>
         </div>
         <input type="text" className="mailform-subject" placeholder="Subject" onChange={props.onChange.bind(this, 'subject')} />

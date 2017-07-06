@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { MailForm } from './components'
-import { changeMailRecipients, changeMailSubject, changeMailContent, changeEditStatus } from './actions/app'
+import { changeMailRecipients, changeMailCCs, changeMailBCCs, changeMailSubject, changeMailContent, changeEditStatus } from './actions/app'
 import './scss/index.scss'
 
 class App extends Component {
@@ -20,14 +20,28 @@ class App extends Component {
     const payload = e.target.value;
     const { dispatch } = this.props;
     switch(type) {
-      case 'recipient':
-        return dispatch(changeMailRecipients(payload));
+      case 'recipients':
+        this.splitRecipients(payload, 'main');
+        break;
       case 'subject':
         return dispatch(changeMailSubject(payload));
       case 'content':
         return dispatch(changeMailContent(payload));
       default:
-        return;
+        break;
+    }
+  }
+
+  splitRecipients = (value, type) => {
+    const { dispatch } = this.props;
+    const list = value.split(';').filter((val) => val);
+    switch(type){
+      case 'main':
+        return dispatch(changeMailRecipients(list));
+      case 'CC':
+        return dispatch(changeMailCCs(list));
+      case 'BCC':
+      return dispatch(changeMailBCCs(list));
     }
   }
 
@@ -40,6 +54,7 @@ class App extends Component {
     const { mailSubject, mailContent, mailRecipients, editStatus } = this.props;
     return (
       <div className="container">
+        {mailRecipients.length > 0 && console.log(mailRecipients)}
         <MailForm onChange={this.handleChange}
                   onClick={this.handleSubmit} 
                   onEdit={this.toggleEdit}
@@ -53,6 +68,8 @@ class App extends Component {
 function mapStateToProps(store) {
   return {
     mailRecipients: store.app.mailRecipients,
+    mailCCs: store.app.mailCCs,
+    mailBCC: store.app.mailBCCs,
     mailSubject: store.app.mailSubject,
     mailContent: store.app.mailContent,
     editStatus: store.app.editStatus
@@ -60,14 +77,18 @@ function mapStateToProps(store) {
 }
 
 App.defaultProps = {
-  mailRecipients: null,
+  mailRecipients: [],
+  mailCCs: [],
+  mailBCCs: [],
   mailSubject: null,
   mailContent: null,
   editStatus: true
 }
 
 App.propTypes = {
-  mailRecipients: PropTypes.string,
+  mailRecipients: PropTypes.array,
+  mailCCs: PropTypes.array,
+  mailBCCs: PropTypes.array,
   mailContent: PropTypes.string,
   mailSubject: PropTypes.string,
   dispatch: PropTypes.func,
