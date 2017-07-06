@@ -4,6 +4,9 @@ $color-blue: #008BCE;
 body {
     font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
     color: $color-blue;
+    *:focus {
+        outline: none;
+    }
 }
 
 @mixin input-field {
