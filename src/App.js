@@ -7,21 +7,12 @@ import './scss/index.scss'
 
 class App extends Component {
 
-  // sampleFunction = (sampleParam, e) => {
-  //   const { dispatch } = this.props;
-  //   console.log(sampleParam);
-  //   console.log(e)
-  //   return dispatch(sampleAction(sampleParam));
-  // }
-
   handleSubmit = (e) => {
     const { dispatch, mailSubject, mailContent, mailRecipient } = this.props;
     if (mailRecipient && mailContent) {
-      return alert('success');
-    } else if (!mailContent) {
-      return alert(mailContent);
+      //send contents
     }
-    return alert('Mail Recipient and Message must not be empty');
+    return alert('Mail recipient and message field must not be empty.');
   }
 
   handleChange = (type, e) => {
@@ -40,7 +31,7 @@ class App extends Component {
   render() {
     const { mailSubject, mailContent, mailRecipient } = this.props;
     return (
-      <div className='container'>
+      <div className="container">
         <MailForm onSubjectChange={this.handleSubjectChange}
                   onContentChange={this.handleContentChange}
                   onChange={this.handleChange}
