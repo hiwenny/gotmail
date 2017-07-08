@@ -1,13 +1,17 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { MailForm } from './components'
-import { changeMailRecipients, changeMailCCs, changeMailBCCs, changeMailSubject, changeMailContent, changeEditStatus } from './actions/app'
-import './scss/index.scss'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { MailForm } from './components';
+import { changeMailRecipients, changeMailCCs, changeMailBCCs, 
+         changeMailSubject, changeMailContent, changeEditStatus, 
+         updateErrorMessage } from './actions/app';
+import { sendMessage } from './utilities/messaging';
+import './scss/index.scss';
 
 class App extends Component {
 
   handleSubmit = (e) => {
+    //do preprocessing here
     const { dispatch, mailSubject, mailContent, mailRecipients } = this.props;
     console.log(mailRecipients)
     console.log(mailContent)
@@ -16,6 +20,9 @@ class App extends Component {
       console.log('success')
     }
     return console.log('Mail recipient and message field must not be empty.');
+
+    // this.props.dispatch(updateErrorMessage('hey'));
+    // console.log(this.props.errorMessage);
   }
 
   handleChange = (type, e) => {
@@ -81,6 +88,7 @@ function mapStateToProps(store) {
     mailBCCs: store.app.mailBCCs,
     mailSubject: store.app.mailSubject,
     mailContent: store.app.mailContent,
+    errorMessage: store.app.errorMessage,
     editStatus: store.app.editStatus
   }
 }
@@ -91,6 +99,7 @@ App.defaultProps = {
   mailBCCs: [],
   mailSubject: null,
   mailContent: null,
+  errorMessage: null,
   editStatus: true
 }
 

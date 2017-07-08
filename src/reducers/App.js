@@ -6,6 +6,7 @@ const initState = {
   mailBCCS: [],
   mailSubject: null,
   mailContent: null,
+  errorMessage: null,
   editStatus: true
 }
 
@@ -39,6 +40,11 @@ const app = (state = initState, action) => {
     case types.CHANGE_EDIT_STATUS: {
       return {
         ...state, editStatus: action.editStatus
+      }
+    }
+    case types.UPDATE_ERROR_MESSAGE: {
+      return {
+        ...state, errorMessage: action.errorMessage
       }
     }
     default:

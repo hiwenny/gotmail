@@ -1,4 +1,4 @@
-import { changeMailRecipients, changeMailCCs, changeMailBCCs, changeMailSubject, changeMailContent, changeEditStatus } from 'app';
+import { changeMailRecipients, changeMailCCs, changeMailBCCs, changeMailSubject, changeMailContent, changeEditStatus, updateErrorMessage } from 'app';
 
 export {
     changeMailRecipients,
@@ -6,5 +6,6 @@ export {
     changeMailBCCs,
     changeMailSubject,
     changeMailContent,
-    changeEditStatus
+    changeEditStatus,
+    updateErrorMessage
 }

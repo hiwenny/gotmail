@@ -42,4 +42,9 @@ export function changeEditStatus(status) {
   }
 }
 
-
+export function updateErrorMessage(message) {
+  return {
+    type: actionTypes.UPDATE_ERROR_MESSAGE,
+    errorMessage: message
+  }
+}

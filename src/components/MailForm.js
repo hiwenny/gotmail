@@ -29,7 +29,7 @@ const MailForm = props => {
         <span className="info-message">{warningStar} required</span>
         <button className="mailform-submit" onClick={props.onClick}>Submit</button>
     </div>
-  )
+  );
 }
 
 MailForm.propTypes = {
