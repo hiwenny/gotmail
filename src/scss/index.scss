@@ -7,6 +7,12 @@ body {
     *:focus {
         outline: none;
     }
+    .info-message {
+        color: lightgrey;
+    }
+    .warning {
+        color: red;
+    }
 }
 
 @mixin input-field {
@@ -79,6 +85,9 @@ body {
                 margin: 0 0 0.2rem 0;
                 width: 19%;
             }
+        }
+        .info-message {
+            float: right;
         }
     }
 }
