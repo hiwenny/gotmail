@@ -8,12 +8,14 @@ import './scss/index.scss'
 class App extends Component {
 
   handleSubmit = (e) => {
-    // const { dispatch, mailSubject, mailContent, mailRecipients } = this.props;
-    // if (mailRecipients && mailContent) {
-    //   //send contents
-    //   return alert('successful');
-    // }
-    // return alert('Mail recipient and message field must not be empty.');
+    const { dispatch, mailSubject, mailContent, mailRecipients } = this.props;
+    console.log(mailRecipients)
+    console.log(mailContent)
+    if (mailRecipients.length > 0 && mailContent) {
+      //send contents
+      console.log('success')
+    }
+    return console.log('Mail recipient and message field must not be empty.');
   }
 
   handleChange = (type, e) => {

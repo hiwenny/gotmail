@@ -57,12 +57,22 @@ body {
         }
         .mailform-recipient-container {
             width: 100%;
-            display: inline-flex;
-            justify-content: space-between;
-            .mailform-email {
-                width: 80%;
-                &.inactive {
-                    border: none;
+            .input-container {
+                width: inherit;
+                display: inline-flex;
+                justify-content: space-between;
+                .half-width {
+                    display: inherit;
+                    width: 46%;
+                }
+                label {
+                    min-width: 44px;
+                    line-height: 2.4rem;
+                }
+                .mailform-input {
+                    &.inactive {
+                        border: none;
+                    }
                 }
             }
             button.mailform-recipient-button {
