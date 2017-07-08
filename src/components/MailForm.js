@@ -6,11 +6,12 @@ const MailForm = props => {
   const warningStar = <span className="warning">*</span>
   return (
     <div className='mailform-container'>
-        <h1 className="header">Contact Us</h1>
+        <h1 className="header">New Message</h1>
         <div className="mailform-recipient-container">
+          <span className="error-message">{props.message}</span>
           <div className="input-container">
             <label htmlFor="email">{warningStar}To:</label>
-            <input type="text" id="email" placeholder="To add multiple e-mails use semicolon (;)" className={inputClass} onChange={props.onChange.bind(this, 'email-main')} readOnly={!props.editMode ? true : false} /> 
+            <input type="text" id="email" placeholder="To add multiple emails use semicolon (;)" className={inputClass} onChange={props.onChange.bind(this, 'email-main')} readOnly={!props.editMode ? true : false} /> 
           </div>
           <div className="input-container">
             <div className="half-width">

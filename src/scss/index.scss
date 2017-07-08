@@ -13,6 +13,9 @@ body {
     .warning {
         color: red;
     }
+    .error-message {
+        line-height: 1.5rem;
+    }
 }
 
 @mixin input-field {

@@ -1,28 +1,41 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import validator from 'validator';
 import { MailForm } from './components';
 import { changeMailRecipients, changeMailCCs, changeMailBCCs, 
          changeMailSubject, changeMailContent, changeEditStatus, 
-         updateErrorMessage } from './actions/app';
-import { sendMessage } from './utilities/messaging';
+         updateErrorMessage, resetErrorMessage } from './actions/app';
+import { sendEmail } from './utilities/messaging';
 import './scss/index.scss';
 
 class App extends Component {
 
   handleSubmit = (e) => {
-    //do preprocessing here
-    const { dispatch, mailSubject, mailContent, mailRecipients } = this.props;
-    console.log(mailRecipients)
-    console.log(mailContent)
-    if (mailRecipients.length > 0 && mailContent) {
-      //send contents
-      console.log('success')
-    }
-    return console.log('Mail recipient and message field must not be empty.');
+    const { dispatch, mailRecipients, mailCCs, mailBCCs, mailSubject, mailContent } = this.props;
+    console.log(mailCCs)
+    console.log(mailCCs.length)
+    return (sendEmail({mailRecipients}));
 
-    // this.props.dispatch(updateErrorMessage('hey'));
-    // console.log(this.props.errorMessage);
+    if (mailRecipients.length === 0 || !mailContent) {
+      return dispatch(updateErrorMessage('Email and message fields must not be empty.'));
+    } else if(!this.emailValidation(mailRecipients)) {
+      return dispatch(updateErrorMessage('Invalid email(s).'));
+    } else if (mailCCs.length > 0 && !this.emailValidation(mailCCs)) {
+      return dispatch(updateErrorMessage('Invalid CC email(s).'));
+    } else if (mailBCCs.length > 0 && !this.emailValidation(mailBCCs)) {
+      return dispatch(updateErrorMessage('Invalid BCC email(s).'));
+    }
+    //sanitize inputs and send
+    return dispatch(resetErrorMessage());
+  }
+
+  emailValidation = (arr) => {
+    const emailValidation = arr.map((email) => validator.isEmail(email));
+    if (emailValidation.indexOf(false) > -1) {
+        return false;
+      }
+    return true;
   }
 
   handleChange = (type, e) => {
@@ -62,20 +75,21 @@ class App extends Component {
     }
   }
 
-  toggleEdit = () => {
-    const { dispatch, editStatus } = this.props;
-    return dispatch(changeEditStatus(!editStatus));
-  }
+  // toggleEdit = () => {
+  //   const { dispatch, editStatus } = this.props;
+  //   return dispatch(changeEditStatus(!editStatus));
+  // }
 
   render() {
-    const { mailSubject, mailCCs, mailBCCs, mailContent, mailRecipients, editStatus } = this.props;
+    const { mailSubject, mailCCs, mailBCCs, mailContent, mailRecipients, errorMessage } = this.props;
     return (
       <div className="container">
         <MailForm onChange={this.handleChange}
                   onClick={this.handleSubmit} 
-                  onEdit={this.toggleEdit}
                   recipient={mailRecipients}
-                  editMode={editStatus} />
+                  message={errorMessage}
+                  editMode={true} />
+                  {/*onEdit={this.toggleEdit*/}                  
       </div>
     )
   }

@@ -47,6 +47,11 @@ const app = (state = initState, action) => {
         ...state, errorMessage: action.errorMessage
       }
     }
+    case types.RESET_ERROR_MESSAGE: {
+      return {
+        ...state, errorMessage: null
+      }
+    }
     default:
       return state
   }

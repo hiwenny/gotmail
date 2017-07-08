@@ -48,3 +48,9 @@ export function updateErrorMessage(message) {
     errorMessage: message
   }
 }
+
+export function resetErrorMessage(message) {
+  return {
+    type: actionTypes.RESET_ERROR_MESSAGE
+  }
+}
