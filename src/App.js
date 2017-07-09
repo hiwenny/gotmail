@@ -82,7 +82,7 @@ class App extends Component {
   // }
 
   render() {
-    const { mailRecipients, errorMessage } = this.props;
+    const { errorMessage } = this.props;
     return (
       <div className="container">
         <MailForm onChange={this.handleChange}
