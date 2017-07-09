@@ -8,6 +8,7 @@
 
 # production
 /build
+/src/server/*
 
 # misc
 .DS_Store
@@ -21,5 +22,4 @@ yarn-debug.log*
 yarn-error.log*
 
 instructions.md
-
-/src/server/*
+sendgrid.env

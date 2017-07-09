@@ -1,3 +1,4 @@
+/* Can do with more thorough tests. */
 import React from 'react'
 import { shallow } from 'enzyme'
 import MailForm from './MailForm'

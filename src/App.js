@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import validator from 'validator';
+import DOMpurify from 'dompurify';
 import { MailForm } from './components';
 import { changeMailRecipients, changeMailCCs, changeMailBCCs, 
-         changeMailSubject, changeMailContent, changeEditStatus, 
-         updateErrorMessage, resetErrorMessage } from './actions/app';
+         changeMailSubject, changeMailContent, 
+         updateErrorMessage } from './actions/app';
 import { sendEmail } from './utilities/messaging';
 import './scss/index.scss';
 
@@ -13,9 +14,7 @@ class App extends Component {
 
   handleSubmit = (e) => {
     const { dispatch, mailRecipients, mailCCs, mailBCCs, mailSubject, mailContent } = this.props;
-    console.log(mailCCs)
-    console.log(mailCCs.length)
-    return (sendEmail({mailRecipients}));
+    const tempSender = 'mail@example.com';
 
     if (mailRecipients.length === 0 || !mailContent) {
       return dispatch(updateErrorMessage('Email and message fields must not be empty.'));
@@ -26,8 +25,10 @@ class App extends Component {
     } else if (mailBCCs.length > 0 && !this.emailValidation(mailBCCs)) {
       return dispatch(updateErrorMessage('Invalid BCC email(s).'));
     }
-    //sanitize inputs and send
-    return dispatch(resetErrorMessage());
+    mailRecipients.map((email, i) => {
+      return dispatch(sendEmail({to: email, from: tempSender, cc: mailCCs, bcc: mailBCCs,
+                               subject: mailSubject, text: DOMpurify.sanitize(mailContent)}));
+    });
   }
 
   emailValidation = (arr) => {
@@ -81,7 +82,7 @@ class App extends Component {
   // }
 
   render() {
-    const { mailSubject, mailCCs, mailBCCs, mailContent, mailRecipients, errorMessage } = this.props;
+    const { mailRecipients, errorMessage } = this.props;
     return (
       <div className="container">
         <MailForm onChange={this.handleChange}
