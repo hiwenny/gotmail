@@ -87,7 +87,6 @@ class App extends Component {
       <div className="container">
         <MailForm onChange={this.handleChange}
                   onClick={this.handleSubmit} 
-                  recipient={mailRecipients}
                   message={errorMessage}
                   editMode={true} />
                   {/*onEdit={this.toggleEdit*/}                  
