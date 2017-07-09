@@ -36,6 +36,7 @@ export function sendEmail(data) {
         */
 
         /* Alternatively, Consider fetching to local server as proxy and do api transactions in express to see if authorization can be done more easily there. */
+    return dispatch(updateErrorMessage('Message sent!'));
     }
 }
 

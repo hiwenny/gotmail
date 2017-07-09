@@ -17,5 +17,6 @@ npm test
 
 The site is then accessible on `http://localhost:3000/`
 
-The online version is available on `https://tranquil-shore-94410.herokuapp.com/`
+Online version is available on `https://tranquil-shore-94410.herokuapp.com/`
 
+Focus on improvement would be proper implementation of API integration as described in `src/utilities/messaging` and more thorough tests.
